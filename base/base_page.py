@@ -16,7 +16,7 @@ class BasePage:
     logger = logging.getLogger("BiliAutoTest")
     def find(self, locator, timeout=None):
         """显式等待查找元素，自带日志，等待元素可见
-         timeout=None → 使用全局TIMEOUT(12)；探测场景手动传小数字，如timeout=2
+         timeout=None → 使用全局TIMEOUT(10)；探测场景手动传小数字，如timeout=2
         """
         use_timeout = timeout if timeout is not None else TIMEOUT
         try:

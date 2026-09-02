@@ -6,7 +6,7 @@
 用法:
     python run_tests.py                 # 运行全部用例，执行完自动打开报告
     python run_tests.py -k test_search  # 只运行匹配的用例（参数会透传给 pytest）
-    python run_tests.py test_cases/test_login.py  # 指定某个测试文件
+    python run_tests.py test_cases/test_video.py  # 指定某个测试文件
 
 说明:
     - 用例结果目录由 pytest.ini 的 --alluredir 决定 (reports/allure-results)。

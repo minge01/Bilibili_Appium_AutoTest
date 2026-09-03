@@ -14,9 +14,9 @@ def init_driver():
         "appActivity": BILI_ACTIVITY,
         "noReset": False,                     # 先改成False，每次重启APP，避免残留坏状态
         "newCommandTimeout": 60,
-        "uiautomator2ServerReadTimeout": 30000,
-        "skipServerInstallation": False,      # 强制关闭，让appium重新推送安装uiautomator2‑server
-        "skipDeviceInitialization": True
+        "uiautomator2:serverReadTimeout": 30000,
+        "uiautomator2:skipServerInstallation": False,      # 强制关闭，让appium重新推送安装uiautomator2‑server
+        "uiautomator2:skipDeviceInitialization": True
     }
     options = UiAutomator2Options().load_capabilities(desired_caps)
     driver = webdriver.Remote("http://127.0.0.1:4723", options=options)

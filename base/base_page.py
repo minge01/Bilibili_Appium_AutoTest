@@ -1,5 +1,4 @@
 # PO 基类
-from appium.webdriver.common.touch_action import TouchAction
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config.settings import TIMEOUT
@@ -37,12 +36,20 @@ class BasePage:
         el.send_keys(text)
 
     def swipe_up(self, duration=500):
-        """向上滑动浏览视频"""
+        """向上滑动浏览视频
+        使用 driver.swipe（W3C Actions 封装）替代已废弃的 TouchAction，
+        两者行为等价：按下起点 -> 停留 duration(ms) -> 移动到终点 -> 释放。
+        """
         size = self.driver.get_window_size()
         width = size['width']
         height = size['height']
-        TouchAction(self.driver).press(x=width/2, y=height*0.8)\
-            .wait(duration).move_to(x=width/2, y=height*0.2).release().perform()
+        self.driver.swipe(
+            start_x=int(width / 2),
+            start_y=int(height * 0.8),
+            end_x=int(width / 2),
+            end_y=int(height * 0.2),
+            duration=duration
+        )
 
     def switch_to_webview(self, webview_name="WEBVIEW_tv.danmaku.bili"):
         """切换到WebView上下文（处理活动页/专题页）"""

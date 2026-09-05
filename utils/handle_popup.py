@@ -1,17 +1,17 @@
 # 通用弹窗拦截器
-from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.common.appiumby import AppiumBy
 from utils.log_util import logger
 import time
 
 # 弹窗黑名单（跳过广告、青少年模式、权限弹窗、登录弹窗）
 BLACK_LIST = [
-    (MobileBy.ID, "tv.danmaku.bili:id/close"),          # 跳过广告/关闭弹窗
-    (MobileBy.ID, "tv.danmaku.bili:id/btn_cancel"),     # 取消按钮
-    (MobileBy.ID, "tv.danmaku.bili:id/iv_close"),       # 青少年模式关闭
-    (MobileBy.ID, "tv.danmaku.bili:id/agree"),       # 同意用户协议按钮
-    (MobileBy.XPATH, "//*[@text='我知道了']"),           # 系统弹窗确认
-    (MobileBy.XPATH, "//*[@text='稍后']"),              # 权限弹窗拒绝
-    (MobileBy.XPATH, "//*[@text='取消']")               # 登录弹窗取消
+    (AppiumBy.ID, "tv.danmaku.bili:id/close"),          # 跳过广告/关闭弹窗
+    (AppiumBy.ID, "tv.danmaku.bili:id/btn_cancel"),     # 取消按钮
+    (AppiumBy.ID, "tv.danmaku.bili:id/iv_close"),       # 青少年模式关闭
+    (AppiumBy.ID, "tv.danmaku.bili:id/agree"),       # 同意用户协议按钮
+    (AppiumBy.XPATH, "//*[@text='我知道了']"),           # 系统弹窗确认
+    (AppiumBy.XPATH, "//*[@text='稍后']"),              # 权限弹窗拒绝
+    (AppiumBy.XPATH, "//*[@text='取消']")               # 登录弹窗取消
 ]
 # 新增 文本黑名单，用来捕获系统ANR弹窗
 TEXT_BLACK_LIST = [
@@ -42,7 +42,7 @@ def handle_popup(driver):
     for txt in TEXT_BLACK_LIST:
         try:
             xpath_expr = f'//*[@text="{txt}"]'
-            els = driver.find_elements(MobileBy.XPATH, xpath_expr)
+            els = driver.find_elements(AppiumBy.XPATH, xpath_expr)
             if els:
                 els[0].click()
                 logger.warning(f"🚨捕获ANR系统弹窗，点击：{txt}")

@@ -1,11 +1,11 @@
 # 播放页（含原生与WebView交互）
 import subprocess
 import time
-from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.common.appiumby import AppiumBy
 from base.base_page import BasePage
 
 class PlayerPage(BasePage):
-    _video_player = (MobileBy.ID, "tv.danmaku.bili:id/reveal_placeholder") # 播放器控件
+    _video_player = (AppiumBy.ID, "tv.danmaku.bili:id/reveal_placeholder") # 播放器控件
 
     def is_video_playing(self):
         """验证视频是否在播放页"""

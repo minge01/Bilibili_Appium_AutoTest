@@ -1,0 +1,38 @@
+# EditorConfig —— 统一各编辑器( PyCharm / VS Code / Cursor )的编码与换行
+# 官网: https://editorconfig.org
+root = true
+
+# ============================================================
+# 重要说明（关于 .bat）：
+#
+#   EditorConfig 规范的 charset 字段仅支持
+#     utf-8 / utf-8-bom / utf-16be / utf-16le / latin1
+#   它【不支持】GBK / GB18030。
+#
+#   Windows cmd 按系统代码页(中文=GBK/936)解析 .bat,
+#   所以本仓库所有 .bat 文件都以 GBK 编码 + CRLF 保存。
+#
+#   关键陷阱: PyCharm 的 EditorConfig 插件即便对 .bat 段【不写 charset】,
+#   仍会把 .bat 标记为"受 .editorconfig 管理", 然后强制套 UTF-8,
+#   覆盖用户在状态栏选的 GBK 也覆盖 .idea/encodings.xml 的单文件映射
+#   —— 结果就是你怎么切 GBK 都没用。
+#
+#   因此本文件【故意不对 .bat 写任何规则】。
+#   编码完全交给 .idea/encodings.xml 里针对 run_smoke.bat 的单文件 GBK 映射。
+# ============================================================
+
+# ---------- 通用行为 ----------
+[*]
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# ---------- 纯文本源码：明确 UTF-8 ----------
+[*.{py,pyi,ini,md,txt,cfg,json,yaml,yml,toml}]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 注意: 没有 [*.bat] 段, 防止 PyCharm EditorConfig 插件干扰
+#       .bat 的 GBK 单文件编码映射(见 .idea/encodings.xml)。

@@ -1,6 +1,6 @@
 # page_objects/main_page.py
 
-from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.common.appiumby import AppiumBy
 from base.base_page import BasePage
 from page_objects.search_page import SearchPage
 from utils.handle_popup import handle_popup
@@ -9,12 +9,12 @@ from utils.compose_popup_detect import handle_age_popup_full
 
 class MainPage(BasePage):
     # 普通控件元素定位
-    _search_btn = (MobileBy.ID, "tv.danmaku.bili:id/expand_search")  # 首页搜索框
-    _home_tab = (MobileBy.XPATH, "//*[@text='首页']")
-    _hot_tab = (MobileBy.XPATH, "//*[@text='热门']")
+    _search_btn = (AppiumBy.ID, "tv.danmaku.bili:id/expand_search")  # 首页搜索框
+    _home_tab = (AppiumBy.XPATH, "//*[@text='首页']")
+    _hot_tab = (AppiumBy.XPATH, "//*[@text='热门']")
 
     # 年龄性别弹窗文本：仅用来Appium探测弹窗是否存在，不点击！
-    _skip_age_gender_btn = (MobileBy.XPATH, '//*[@text="性别"]')
+    _skip_age_gender_btn = (AppiumBy.XPATH, '//*[@text="性别"]')
 
     # Compose右上角跳过按钮（Airtest模板定义）
     _compose_skip_btn = None

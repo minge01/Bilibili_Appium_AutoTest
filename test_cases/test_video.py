@@ -1,4 +1,5 @@
 import allure
+import pytest
 import time
 from page_objects.main_page import MainPage
 
@@ -6,6 +7,9 @@ from page_objects.main_page import MainPage
 class TestVideoPlay:
     @allure.story("游客搜索并播放视频")
     @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.smoke
+    @pytest.mark.regression
+    @pytest.mark.slow
     def test_guest_search_and_play(self, driver):
         """测试: 游客模式搜索视频 -> 进入播放页 -> 验证播放 -> 全屏操作"""
         main = MainPage(driver)
